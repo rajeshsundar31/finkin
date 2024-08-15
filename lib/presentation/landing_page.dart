@@ -27,11 +27,7 @@ class _LandingPageState extends State<LandingPage> {
               fontSize: 24
             ),),
           ),
-          // SizedBox(
-          //   height: displayHeight(context)/9,
-          // ),
           Image.asset(AssetsUtils.landingAvatar),
-
           CustomButton(
             color: AppColor.purple,
             onPressed: (){},
