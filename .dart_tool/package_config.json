@@ -38,6 +38,24 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "cloud_firestore",
+      "rootUri": "file:///Users/rajeshsundar/.pub-cache/hosted/pub.dev/cloud_firestore-5.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
+      "name": "cloud_firestore_platform_interface",
+      "rootUri": "file:///Users/rajeshsundar/.pub-cache/hosted/pub.dev/cloud_firestore_platform_interface-6.3.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
+      "name": "cloud_firestore_web",
+      "rootUri": "file:///Users/rajeshsundar/.pub-cache/hosted/pub.dev/cloud_firestore_web-4.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
       "name": "collection",
       "rootUri": "file:///Users/rajeshsundar/.pub-cache/hosted/pub.dev/collection-1.18.0",
       "packageUri": "lib/",
@@ -279,7 +297,7 @@
     },
     {
       "name": "vm_service",
-      "rootUri": "file:///Users/rajeshsundar/.pub-cache/hosted/pub.dev/vm_service-14.2.4",
+      "rootUri": "file:///Users/rajeshsundar/.pub-cache/hosted/pub.dev/vm_service-14.2.5",
       "packageUri": "lib/",
       "languageVersion": "3.3"
     },
@@ -308,10 +326,10 @@
       "languageVersion": "3.5"
     }
   ],
-  "generated": "2024-08-15T14:58:19.479352Z",
+  "generated": "2024-09-10T14:05:44.895227Z",
   "generator": "pub",
-  "generatorVersion": "3.5.0",
+  "generatorVersion": "3.5.1",
   "flutterRoot": "file:///Users/rajeshsundar/Documents/flutter",
-  "flutterVersion": "3.24.0",
+  "flutterVersion": "3.24.1",
   "pubCache": "file:///Users/rajeshsundar/.pub-cache"
 }
