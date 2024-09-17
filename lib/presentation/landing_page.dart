@@ -3,6 +3,7 @@ import 'package:finkin/core/constants/app_color.dart';
 import 'package:finkin/core/constants/app_strings.dart';
 import 'package:finkin/core/utils/assetutils.dart';
 import 'package:finkin/core/utils/size.dart';
+import 'package:finkin/presentation/register/register_view.dart/register_view.dart';
 import 'package:flutter/material.dart';
 
 class LandingPage extends StatefulWidget {
@@ -30,7 +31,9 @@ class _LandingPageState extends State<LandingPage> {
           Image.asset(AssetsUtils.landingAvatar),
           CustomButton(
             color: AppColor.purple,
-            onPressed: (){},
+            onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterUser()));
+            },
             width: displayWidth(context)/1.2,
             text: AppStrings.continueBtn,
           )

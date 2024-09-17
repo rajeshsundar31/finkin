@@ -22,14 +22,15 @@ class CustomButton extends StatelessWidget {
     return SizedBox(
       width: width,
       height: height,
-      child: TextButton(onPressed: onPressed, 
+      child: TextButton(
+        onPressed: onPressed, 
       style: ButtonStyle(
         backgroundColor: WidgetStatePropertyAll(color),
         shape: WidgetStateProperty.all(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(4.0)
           )
-        )
+        ),
       ),
       child: Text(
         text,
