@@ -3,6 +3,7 @@ import 'package:finkin/components/custom_text.dart';
 import 'package:finkin/core/constants/app_color.dart';
 import 'package:finkin/core/constants/app_strings.dart';
 import 'package:finkin/core/utils/size.dart';
+import 'package:finkin/presentation/register/otp_view/otp_view.dart';
 import 'package:finkin/presentation/register/register_view_model/register_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +17,7 @@ class RegisterUser extends StatefulWidget {
 
 class _RegisterUserState extends State<RegisterUser> {
   TextEditingController mobileController = TextEditingController();
+  
 
   @override
   void initState() {
@@ -64,7 +66,8 @@ class _RegisterUserState extends State<RegisterUser> {
                         color: AppColor.purple,
                         text: AppStrings.continueBtn,
                         onPressed: () {
-            
+                          userRegister.verifiyPhoneNumber(mobileController.text, context);
+                           Navigator.push(context, (MaterialPageRoute(builder: (context) => const OtpView())));
                           print("inputValue${mobileController.text}");
                         },
                         width: displayWidth(context)/1.7,
