@@ -5,7 +5,6 @@ class DashboardViewModel extends ChangeNotifier {
   List<DetailsModel> detailsList = [];
 
   expanseList({required String amount, required String  details, required String type}){
-    detailsList.clear();
     var listDetail = DetailsModel(
       totalBla: "60000", 
       expenseDetails: details,
@@ -17,4 +16,6 @@ class DashboardViewModel extends ChangeNotifier {
       print(detailsList.length);
     notifyListeners();
   }
+
+ 
 }

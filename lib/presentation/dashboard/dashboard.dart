@@ -6,6 +6,7 @@ import 'package:finkin/core/utils/assetutils.dart';
 import 'package:finkin/core/utils/size.dart';
 import 'package:finkin/presentation/dashboard/dashboard_view_model/dashboard_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class Dashboard extends StatefulWidget {
@@ -24,6 +25,12 @@ class _DashboardState extends State<Dashboard> {
     });
     // TODO: implement initState
     super.initState();
+  }
+
+   dateformat(String datevalue){
+    DateTime dateTime = DateTime.parse(datevalue);
+    String formattedDate = DateFormat('dd-MM-yyyy').format(dateTime);
+    return formattedDate;
   }
   @override
   Widget build(BuildContext context) {
@@ -67,6 +74,7 @@ class _DashboardState extends State<Dashboard> {
                  return control.detailsList.isEmpty? Container(): ListView.builder(
                   itemCount: control.detailsList.length,
                   itemBuilder: (BuildContext context, int index) {
+                    print("datet   ${control.detailsList[index].date.toString()}");
                     return Card(
                       elevation: 3,
                       child: ListTile(
@@ -75,22 +83,57 @@ class _DashboardState extends State<Dashboard> {
                         ),
                         trailing: IconButton(onPressed: (){
                          showModalBottomSheet(context: context, 
-                         backgroundColor: AppColor.gold,
+                        //  backgroundColor: AppColor.gold,
                          builder: (context) {
-                           return Column(
-                            children: [
-                              const Center(
-                                child: Text("Payment Details"),
-                              ),
-                              const Divider(),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Text(control.detailsList[index].date.toString()),
-                                  Text("\$ ${control.detailsList[index].amount.toString()}")
-                                ],
-                              )
-                            ],
+                           return Container(
+                            height: displayHeight(context)/3,
+                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                const Center(
+                                  child: CustomText( text: "Payment Details", fontsize: 24,),
+                                ),
+                                const Divider(),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    const Icon(Icons.message),
+                                    const CustomText(text: "Detail :", fontsize: 16,),
+                                    CustomText(text: control.detailsList[index].expenseDetails, fontsize: 12,),
+                                  ],
+                                ),
+                                const Divider(),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    const Icon(Icons.date_range),
+                                    const CustomText(text: "Date :", fontsize: 16,),
+                                    CustomText(text: dateformat(control.detailsList[index].date.toString()) ,fontsize: 12,),
+                                  ],
+                                ),
+                                const Divider(),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    const Icon(Icons.money),
+                                    const CustomText(text: "Amount :", fontsize: 16,),
+                                    CustomText(text: control.detailsList[index].amount.toString(), fontsize: 12,),
+                                  ],
+                                ),
+                                const Divider(),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    const Icon(Icons.currency_exchange),
+                                    const CustomText(text: "Type :", fontsize: 16,),
+                                    CustomText(text: control.detailsList[index].transactionType, fontsize: 12,),
+                                  ],
+                                ),
+                              ],
+                             ),
                            );
                          },);
                         }, icon: const Icon(Icons.arrow_forward_ios)),

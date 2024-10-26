@@ -1,5 +1,5 @@
-import 'package:finkin/presentation/dashboard/dashboard.dart';
 import 'package:finkin/presentation/dashboard/dashboard_view_model/dashboard_view_model.dart';
+import 'package:finkin/presentation/landing_page.dart';
 import 'package:finkin/presentation/register/register_view_model/register_view_model.dart';
 import 'package:finkin/service/firebase.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const Dashboard(),
+        home: const LandingPage(),
       ),
     );
   }
