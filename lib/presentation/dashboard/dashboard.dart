@@ -21,7 +21,7 @@ class _DashboardState extends State<Dashboard> {
   @override
   void initState() {
     Future.microtask((){
-      Provider.of<DashboardViewModel>(context, listen: false);
+      Provider.of<DashboardViewModel>(context, listen: false).init();
     });
     // TODO: implement initState
     super.initState();
@@ -66,7 +66,7 @@ class _DashboardState extends State<Dashboard> {
              SizedBox(
               width: displayWidth(context)/1,
               height: displayHeight(context)/2,
-               child: CustomCarousel(),
+               child: const CustomCarousel(),
              ),
              Expanded(
                child: Consumer<DashboardViewModel>(
@@ -74,12 +74,12 @@ class _DashboardState extends State<Dashboard> {
                  return control.detailsList.isEmpty? Container(): ListView.builder(
                   itemCount: control.detailsList.length,
                   itemBuilder: (BuildContext context, int index) {
-                    print("datet   ${control.detailsList[index].date.toString()}");
+                     String formattedDate = DateFormat('dd-MM-yyyy').format(control.detailsList[index].tansactionDate);              
                     return Card(
                       elevation: 3,
                       child: ListTile(
-                        leading: control.detailsList[index].transactionType == "Income"? const Icon(Icons.circle, color: AppColor.green,): const Icon(Icons.circle, color: AppColor.red,),
-                        title: Text(control.detailsList[index].expenseDetails, style: TextStyle(color: AppColor.black),
+                        leading: control.detailsList[index].expenseType == "Income"? const Icon(Icons.circle, color: AppColor.green,): const Icon(Icons.circle, color: AppColor.red,),
+                        title: Text(control.detailsList[index].expenseDetail, style: const TextStyle(color: AppColor.black),
                         ),
                         trailing: IconButton(onPressed: (){
                          showModalBottomSheet(context: context, 
@@ -102,7 +102,7 @@ class _DashboardState extends State<Dashboard> {
                                   children: [
                                     const Icon(Icons.message),
                                     const CustomText(text: "Detail :", fontsize: 16,),
-                                    CustomText(text: control.detailsList[index].expenseDetails, fontsize: 12,),
+                                    CustomText(text: control.detailsList[index].expenseDetail, fontsize: 12,),
                                   ],
                                 ),
                                 const Divider(),
@@ -111,7 +111,7 @@ class _DashboardState extends State<Dashboard> {
                                   children: [
                                     const Icon(Icons.date_range),
                                     const CustomText(text: "Date :", fontsize: 16,),
-                                    CustomText(text: dateformat(control.detailsList[index].date.toString()) ,fontsize: 12,),
+                                    CustomText(text: formattedDate ,fontsize: 12,),
                                   ],
                                 ),
                                 const Divider(),
@@ -129,7 +129,7 @@ class _DashboardState extends State<Dashboard> {
                                   children: [
                                     const Icon(Icons.currency_exchange),
                                     const CustomText(text: "Type :", fontsize: 16,),
-                                    CustomText(text: control.detailsList[index].transactionType, fontsize: 12,),
+                                    CustomText(text: control.detailsList[index].expenseType, fontsize: 12,),
                                   ],
                                 ),
                               ],

@@ -20,6 +20,12 @@ class _CustomDialogState extends State<CustomDialog> {
   List<String> expenseType = ['Income', 'Expenses'];
   String? selectedValue = "Transaction Type";
   late String transactionType;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -98,7 +104,8 @@ class _CustomDialogState extends State<CustomDialog> {
                     text: "Add Expenses",
                     onPressed: () {
                       if(_formKey.currentState!.validate()){
-                        controller.expanseList(amount: amount.text, details: detail.text, type: transactionType);
+                        controller.saveDataToDb(amount: double.parse(amount.text), expenseDetail: detail.text, expenseType: transactionType);
+                        // controller.expanseList(amount: amount.text, details: detail.text, type: transactionType);
                         Navigator.pop(context);
                       }
                       

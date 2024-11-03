@@ -182,6 +182,12 @@
       "languageVersion": "3.2"
     },
     {
+      "name": "http",
+      "rootUri": "file:///Users/rajeshsundar/.pub-cache/hosted/pub.dev/http-1.2.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
       "name": "http_parser",
       "rootUri": "file:///Users/rajeshsundar/.pub-cache/hosted/pub.dev/http_parser-4.0.2",
       "packageUri": "lib/",
@@ -380,7 +386,7 @@
       "languageVersion": "3.5"
     }
   ],
-  "generated": "2024-09-29T14:39:29.050117Z",
+  "generated": "2024-11-02T13:03:54.592340Z",
   "generator": "pub",
   "generatorVersion": "3.5.1",
   "flutterRoot": "file:///Users/rajeshsundar/Documents/flutter",
