@@ -2,9 +2,9 @@ import 'package:finkin/components/custom_button.dart';
 import 'package:finkin/components/custom_text.dart';
 import 'package:finkin/core/constants/app_color.dart';
 import 'package:finkin/core/constants/app_strings.dart';
+import 'package:finkin/core/utils/assetutils.dart';
 import 'package:finkin/core/utils/size.dart';
-import 'package:finkin/presentation/register/otp_view/otp_view.dart';
-import 'package:finkin/presentation/register/register_view_model/register_view_model.dart';
+import 'package:finkin/presentation/register/register_view.dart/register_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,7 +16,9 @@ class RegisterUser extends StatefulWidget {
 }
 
 class _RegisterUserState extends State<RegisterUser> {
-  TextEditingController mobileController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  TextEditingController emailContoller = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   
 
   @override
@@ -31,55 +33,96 @@ class _RegisterUserState extends State<RegisterUser> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: Consumer<RegisterViewModel>(
-            builder: (context, userRegister, child) {
-              return Column(
-              children: [
-                SizedBox(
-                  height: displayHeight(context)* 0.40,
-                  child: const Center(
-                    child: CustomText(
-                      text: "LogIn",
+      child: Form(
+        key: _formKey,
+        child: Scaffold(
+          body: SingleChildScrollView(
+            child: Consumer<RegisterViewModel>(
+              builder: (context, userRegister, child) {
+                return Stack(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 190),
+                      child: Image.asset(AssetsUtils.payment),
                     ),
-                  ),
-                ),
-                SizedBox(
-                  height: displayHeight(context)* 0.35,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      SizedBox(
-                        width: displayWidth(context)/1.2,
-                        child: TextFormField(
-                          controller: mobileController,
-                          keyboardType: TextInputType.phone,
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            hintText: "Enter Your Mobile Number",
-                            labelText: "Mobile Number"
-                          ),
+                    Column(
+                  children: [
+                    SizedBox(
+                      height: displayHeight(context)* 0.40,
+                      child: const Center(
+                        child: CustomText(
+                          text: "Register User",
                         ),
                       ),
-                      CustomButton(
-                        color: AppColor.purple,
-                        text: AppStrings.continueBtn,
-                        onPressed: () {
-                          userRegister.verifiyPhoneNumber(mobileController.text, context);
-                           Navigator.push(context, (MaterialPageRoute(builder: (context) => const OtpView())));
-                          print("inputValue${mobileController.text}");
-                        },
-                        width: displayWidth(context)/1.7,
+                    ),
+                    SizedBox(
+                      height: displayHeight(context)* 0.35,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          SizedBox(
+                            width: displayWidth(context)/1.2,
+                            child: TextFormField(
+                              controller: emailContoller,
+                              validator: (value) {
+                                if (value == null || value.length < 4){
+                                  return 'Please Enter valid Mail Addess';
+                                } else{
+                                  return null;
+                                }
+                              },
+                              keyboardType: TextInputType.phone,
+                              decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: "Enter Your Valid Mail",
+                                labelText: "Email"
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: displayWidth(context)/1.2,
+                            child: TextFormField(
+                              controller: passwordController,
+                              keyboardType: TextInputType.phone,
+                              obscureText: true,
+                              decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: "Enter Strong Password",
+                                labelText: "Password"
+                              ),
+                              validator: (value) {
+                                if (value == null){
+                                  return 'Password cannot be Empty';
+                                } else if (value.length < 4 && value.length > 12){
+                                  return 'Password must be more than 4 letter and less than 12';
+                                } else{
+                                  return null;
+                                }
+                              },
+                            ),
+                          ),
+                          CustomButton(
+                            color: AppColor.purple,
+                            text: AppStrings.continueBtn,
+                            onPressed: () {
+                              if(_formKey.currentState!.validate()){
+                                userRegister.saveUserDetails(email: emailContoller.text, password: passwordController.text, context: context);
+                              }        
+                            },
+                            width: displayWidth(context)/1.3,
+                          )
+                        ],
                       )
-                    ],
-                  )
-                )
-              ],
-            );
+                    )
+                  ],
+                                ),
+                    
+                  ],
+                );
+                
+              },
               
-            },
-            
+            ),
           ),
         ),
       )

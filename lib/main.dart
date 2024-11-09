@@ -1,6 +1,6 @@
 import 'package:finkin/presentation/dashboard/dashboard_view_model/dashboard_view_model.dart';
 import 'package:finkin/presentation/landing_page.dart';
-import 'package:finkin/presentation/register/register_view_model/register_view_model.dart';
+import 'package:finkin/presentation/register/register_view.dart/register_view_model.dart';
 import 'package:finkin/service/firebase.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

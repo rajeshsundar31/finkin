@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:finkin/model/details_model.dart';
 import 'package:finkin/service/api.service.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +25,7 @@ class DashboardViewModel extends ChangeNotifier {
     }
   }
 
-  void saveDataToDb({required double  amount, required String expenseDetail, required String expenseType}) async {
+  void saveDataToDb({required double  amount, required String expenseDetail, required String expenseType, required BuildContext context}) async {
     DateTime currentDate = DateTime.now();
      
     // String formattedDate = "${currentDate.year.toString().padLeft(4, '0')}-${currentDate.month.toString().padLeft(2, '0')}-${currentDate.day.toString().padLeft(2, '0')}";
@@ -37,7 +36,7 @@ class DashboardViewModel extends ChangeNotifier {
       "expenseType": expenseType,
       "tansactionDate": currentDate.toIso8601String()
     };
-    var addData = await CommonApiServices().saveData("/expensedetail", json.encode(data));
+    await CommonApiServices().saveData("/expensedetail", json.encode(data), context);
     fetchExpenseList();
     notifyListeners();
 

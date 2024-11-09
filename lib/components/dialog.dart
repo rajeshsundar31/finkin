@@ -104,7 +104,7 @@ class _CustomDialogState extends State<CustomDialog> {
                     text: "Add Expenses",
                     onPressed: () {
                       if(_formKey.currentState!.validate()){
-                        controller.saveDataToDb(amount: double.parse(amount.text), expenseDetail: detail.text, expenseType: transactionType);
+                        controller.saveDataToDb(amount: double.parse(amount.text), expenseDetail: detail.text, expenseType: transactionType, context: context);
                         // controller.expanseList(amount: amount.text, details: detail.text, type: transactionType);
                         Navigator.pop(context);
                       }
