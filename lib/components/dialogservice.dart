@@ -77,7 +77,7 @@ class DialogExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return SnackBar(
       content: Container(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         height: 90,
         decoration: const BoxDecoration(
           color: AppColor.red,
@@ -85,7 +85,7 @@ class DialogExample extends StatelessWidget {
         ),
         child: Row(
           children: [
-            SizedBox(width: 48,),
+            const SizedBox(width: 48,),
             Expanded(child: Column(
               children: [
                 Text(title),

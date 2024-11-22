@@ -18,6 +18,7 @@ class RegisterUser extends StatefulWidget {
 
 class _RegisterUserState extends State<RegisterUser> {
   final _formKey = GlobalKey<FormState>();
+  String? name = "";
   TextEditingController emailContoller = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -68,6 +69,7 @@ class _RegisterUserState extends State<RegisterUser> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
+                    _buildName(context),
                     _buildEmail(context),
                     _buildPassword(context),
                     _buildButton(context),
@@ -77,6 +79,29 @@ class _RegisterUserState extends State<RegisterUser> {
           ],
         ),
       ],
+    );
+  }
+
+    Widget _buildName(BuildContext context) {
+    return SizedBox(
+      width: displayWidth(context) / 1.2,
+      child: TextFormField(
+        validator: (value) {
+          if (value == null || value.length < 4) {
+            return 'Please Enter valid Mail Addess';
+          } else {
+            return null;
+          }
+        },
+        onChanged: (value) {
+          name = value;
+        },
+        keyboardType: TextInputType.name,
+        decoration: const InputDecoration(
+            border: OutlineInputBorder(),
+            hintText: "Enter Your Valid Name",
+            labelText: "Name"),
+      ),
     );
   }
 
@@ -133,12 +158,11 @@ class _RegisterUserState extends State<RegisterUser> {
             color: AppColor.purple,
             text: AppStrings.continueBtn,
             onPressed: () {
-              print("email${emailContoller.text}");
-              print("pass${passwordController.text}");
               if (_formKey.currentState!.validate()) {
                 btnRegister.saveUserDetails(
                     email: emailContoller.text,
                     password: passwordController.text,
+                    userName: name.toString(),
                     context: context);
               }
             },
@@ -157,10 +181,9 @@ class _RegisterUserState extends State<RegisterUser> {
           children: [
             const TextSpan(text: "Already Have a account?",style: TextStyle(color: AppColor.black)),
             const WidgetSpan(child: SizedBox(width: 8.0,)),
-            TextSpan(text: "LogIn",style: TextStyle(color: AppColor.green), 
+            TextSpan(text: "LogIn",style: const TextStyle(color: AppColor.green), 
             recognizer: TapGestureRecognizer()
             ..onTap = () {
-              print("Login");
             }
             )
           ]

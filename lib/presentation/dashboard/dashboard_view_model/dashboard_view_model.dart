@@ -12,7 +12,6 @@ class DashboardViewModel extends ChangeNotifier {
   
   void fetchExpenseList () async {
     var expense = await CommonApiServices().fetchData("/getexpense");
-    print(json.decode(expense));
     var decodeData = json.decode(expense);
     if(decodeData != null) {
       

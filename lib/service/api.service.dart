@@ -35,7 +35,14 @@ class CommonApiServices {
         return response.body;
       } else {
         var body = json.decode(response.body); 
-        QuickAlert.show(context:context, type: QuickAlertType.warning, text: body['error'], showConfirmBtn: false,);
+        QuickAlert.show(
+          // ignore: use_build_context_synchronously
+          context: context, 
+          type: QuickAlertType.error, 
+          text: body['error'], 
+          showConfirmBtn: false,
+          animType: QuickAlertAnimType.slideInUp,
+        );
         return body;
       }
     

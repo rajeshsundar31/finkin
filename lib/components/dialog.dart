@@ -20,12 +20,7 @@ class _CustomDialogState extends State<CustomDialog> {
   List<String> expenseType = ['Income', 'Expenses'];
   String? selectedValue = "Transaction Type";
   late String transactionType;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
+  
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -45,7 +40,7 @@ class _CustomDialogState extends State<CustomDialog> {
                     text: "Add Expense Details",
                     color: AppColor.black,
                   ),
-                  Divider(),
+                  const Divider(),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(

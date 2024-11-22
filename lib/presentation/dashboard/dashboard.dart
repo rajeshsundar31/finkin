@@ -23,7 +23,6 @@ class _DashboardState extends State<Dashboard> {
     Future.microtask((){
       Provider.of<DashboardViewModel>(context, listen: false).init();
     });
-    // TODO: implement initState
     super.initState();
   }
 
@@ -41,7 +40,7 @@ class _DashboardState extends State<Dashboard> {
           shape: const CircleBorder(),
           onPressed: (){
             showDialog(context: context, builder: (context) {
-              return CustomDialog();
+              return const CustomDialog();
             });
           }, 
           child: const Icon(Icons.add, color: AppColor.white,),),
@@ -85,7 +84,7 @@ class _DashboardState extends State<Dashboard> {
                          showModalBottomSheet(context: context, 
                         //  backgroundColor: AppColor.gold,
                          builder: (context) {
-                           return Container(
+                           return SizedBox(
                             height: displayHeight(context)/3,
                              child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
